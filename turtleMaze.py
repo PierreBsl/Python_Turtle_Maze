@@ -16,8 +16,8 @@ class TurtleMaze(Maze):
         self.__width = self.__square_size * Maze.getWidth(self)
         self.__height = self.__square_size * Maze.getHeight(self)
 
-        turtle.title('Maze')
-        turtle.speed('normal')
+        turtle.title('Maze by Pierre')
+        turtle.speed('fastest')
         turtle.shape('turtle')
         turtle.setup(self.__width + 50, self.__height + 50)
 
@@ -113,7 +113,7 @@ class TurtleMaze(Maze):
 
     def doMaze(self):
         turtle.tracer(1, 10)
-        turtle.speed('slowest')
+        turtle.speed('fastest')
         turtle.pencolor('green')
 
         turtle.goto(self.__game_x, self.__game_y)
