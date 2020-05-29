@@ -17,7 +17,6 @@ class TurtleMaze(Maze):
         self.__height = self.__square_size * Maze.getHeight(self)
 
         turtle.title('Maze by Pierre')
-        turtle.speed('fastest')
         turtle.shape('turtle')
         turtle.setup(self.__width + 50, self.__height + 50)
 
@@ -42,7 +41,7 @@ class TurtleMaze(Maze):
             turtle.end_fill()
 
     def drawMaze(self):
-        turtle.tracer(0, 0)
+        turtle.tracer(0)
 
         start_draw_x = - self.__width / 2
         start_draw_y = self.__height / 2
@@ -77,28 +76,28 @@ class TurtleMaze(Maze):
     def nextCase(self):
         if self.getCell(self.__game_line, self.__game_column + 1) >= 2:
             self.__visited_cases.append(
-                {"l": self.__game_line, "c": self.__game_column, "x": self.__game_x, "y": self.__game_y})
+                {"line": self.__game_line, "column": self.__game_column, "x": self.__game_x, "y": self.__game_y})
 
             self.__game_column += 1
             self.__game_x += self.__square_size
 
         elif self.getCell(self.__game_line + 1, self.__game_column) >= 2:
             self.__visited_cases.append(
-                {"l": self.__game_line, "c": self.__game_column, "x": self.__game_x, "y": self.__game_y})
+                {"line": self.__game_line, "column": self.__game_column, "x": self.__game_x, "y": self.__game_y})
 
             self.__game_line += 1
             self.__game_y -= self.__square_size
 
         elif self.getCell(self.__game_line, self.__game_column - 1) >= 2:
             self.__visited_cases.append(
-                {"l": self.__game_line, "c": self.__game_column, "x": self.__game_x, "y": self.__game_y})
+                {"line": self.__game_line, "column": self.__game_column, "x": self.__game_x, "y": self.__game_y})
 
             self.__game_column -= 1
             self.__game_x -= self.__square_size
 
         elif self.getCell(self.__game_line - 1, self.__game_column) >= 2:
             self.__visited_cases.append(
-                {"l": self.__game_line, "c": self.__game_column, "x": self.__game_x, "y": self.__game_y})
+                {"line": self.__game_line, "column": self.__game_column, "x": self.__game_x, "y": self.__game_y})
 
             self.__game_line -= 1
             self.__game_y += self.__square_size
@@ -113,7 +112,7 @@ class TurtleMaze(Maze):
 
     def doMaze(self):
         turtle.tracer(1, 10)
-        turtle.speed('fastest')
+        turtle.speed('slowest')
         turtle.pencolor('green')
 
         turtle.goto(self.__game_x, self.__game_y)
@@ -125,8 +124,8 @@ class TurtleMaze(Maze):
             while not self.nextCase():
                 previous_case = self.__visited_cases.pop()
 
-                self.__game_line = previous_case["l"]
-                self.__game_column = previous_case["c"]
+                self.__game_line = previous_case["line"]
+                self.__game_column = previous_case["column"]
                 self.__game_x = previous_case["x"]
                 self.__game_y = previous_case["y"]
 
